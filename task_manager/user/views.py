@@ -5,3 +5,7 @@ from django.contrib import messages
 from task_manager.user.models import User
 
 
+class UsersIndexView(View):
+    def get(self, request, *args, **kwargs):
+        users = User.objects.all()
+        return render(request, 'user/users.html', context={'users': users})

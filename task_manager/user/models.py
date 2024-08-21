@@ -12,8 +12,4 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
-    
 
-# class LoginUser(models.Model):
-#     username = models.CharField(max_length=255)
-#     password = models.
