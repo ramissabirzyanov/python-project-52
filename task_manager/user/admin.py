@@ -1,10 +1,7 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import User
-
 
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id','username', 'created_at')
