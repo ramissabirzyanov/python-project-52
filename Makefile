@@ -18,3 +18,6 @@ start:
 
 install:
 		poetry install
+
+shell:
+		python manage.py shell_plus --print-sql
