@@ -21,3 +21,6 @@ install:
 
 shell:
 		python manage.py shell_plus --print-sql
+
+test:
+		python manage.py test

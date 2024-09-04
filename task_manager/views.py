@@ -14,6 +14,7 @@ class UserLoginView(SuccessMessageMixin, views.LoginView):
     authentication_form = UserLoginForm
     success_message = 'Вы залогинены'
 
+
 class UserLogoutView(views.LogoutView):
     http_method_names = ["get", "post"]
     next_page = 'login'

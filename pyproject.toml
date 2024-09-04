@@ -16,6 +16,7 @@ whitenoise = "^6.7.0"
 uvicorn = "^0.30.6"
 django-bootstrap5 = "^24.2"
 django-extensions = "^3.2.3"
+coverage = "^7.6.1"
 
 
 [tool.poetry.group.dev.dependencies]
