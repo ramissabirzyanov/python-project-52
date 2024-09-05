@@ -69,5 +69,19 @@ class User_CRUD_test(TestCase):
         self.assertFalse(User.objects.filter(username='alfred').exists())
         self.assertRedirects(response, '/users/')
         self.assertEqual(response.status_code, 302)
-        user = User.objects.get(id=self.user.id)
+    
+    def test_get_delete_user(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('user_delete', args=[self.user.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'user/user_delete.html')
+    
+    def test_post_delete_user(self):
+        self.client.force_login(self.user)
+        response = self.client.delete(reverse('user_delete', args=[self.user.id]))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/')
+        self.assertFalse(User.objects.filter(username='gotem').exists())
+
+        
         
