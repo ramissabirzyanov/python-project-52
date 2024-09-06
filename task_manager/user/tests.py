@@ -25,7 +25,7 @@ class UserModelTest(TestCase):
 
 
 class User_CRUD_test(TestCase):
-    # fixtures = ["test_user.json"]
+
     def setUp(self):
         self.user = User.objects.create(first_name='michael', last_name='caine', username='alfred', password='123')
         self.user.save()
@@ -82,6 +82,3 @@ class User_CRUD_test(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/')
         self.assertFalse(User.objects.filter(username='gotem').exists())
-
-        
-        
