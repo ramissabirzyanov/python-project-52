@@ -15,11 +15,16 @@ class UsersViewsTest(TestCase):
 
 class UserModelTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create(first_name='Bruce', last_name='Lee', username='water', password='1234')
+        self.user = User.objects.create(
+            first_name='Bruce',
+            last_name='Lee',
+            username='water',
+            password='1234'
+            )
         self.user.save()
     
     def test_username_label(self):
-        u = User.objects.get(id=1)
+        u = User.objects.get(username='water')
         field_label = u._meta.get_field('username').verbose_name
         self.assertEqual(field_label,'имя пользователя')
 
