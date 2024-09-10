@@ -7,7 +7,6 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.db.models import ProtectedError
 
 
 class LoginRequiredMixin(object):
@@ -54,11 +53,3 @@ class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
             messages.error(request, 'Невозможно удалить статус, потому что он используется')
             return redirect('statuses')
         return super(StatusDeleteView, self).delete(*args, **kwargs)
-
-
-# def post(self, request, *args, **kwargs):
-#         try:
-#             return self.delete(request, *args, **kwargs)
-#         except ProtectedError:
-#             messages.error(request, 'Невозможно удалить статус, потому что он используется')
-#             return redirect('statuses')

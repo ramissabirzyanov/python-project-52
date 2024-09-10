@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-from dotenv import load_dotenv 
+from dotenv import load_dotenv
 import os
 import dj_database_url
 
@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'webserver', 'task-manager-qx27.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'webserver', 'task-manager-qx27.onrender.com']
 
 
 # Application definition
@@ -90,11 +90,11 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR/ 'db.sqlite3',
+        'NAME': BASE_DIR/'db.sqlite3',
     }
 }
 
-DATABASES['default'] =  dj_database_url.config(
+DATABASES['default'] = dj_database_url.config(
         default=os.getenv('DATABASE_URL'),
         conn_max_age=600,
         conn_health_checks=True

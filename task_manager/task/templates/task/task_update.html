@@ -9,9 +9,9 @@
 
 
 <div class="p-5 mb-3">
-    <h1>Изменение статуса</h1>
+    <h1>Изменить задачу</h1>
 
-    <form action="{% url 'status_update' pk=status.id %}" method="post" class="form">
+    <form action="{% url 'task_update' task.id %}" method="post" class="form">
         {% csrf_token %}
 
         {% bootstrap_form form %}

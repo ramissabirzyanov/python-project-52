@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from task_manager.user.models import User
-from task_manager.user.forms import UserCreateForm 
+from task_manager.user.forms import UserCreateForm
 
 
 class UsersViewsTest(TestCase):
@@ -22,17 +22,21 @@ class UserModelTest(TestCase):
             password='1234'
             )
         self.user.save()
-    
+
     def test_username_label(self):
         u = User.objects.get(username='water')
         field_label = u._meta.get_field('username').verbose_name
-        self.assertEqual(field_label,'имя пользователя')
+        self.assertEqual(field_label, 'имя пользователя')
 
 
 class User_CRUD_test(TestCase):
 
     def setUp(self):
-        self.user = User.objects.create(first_name='michael', last_name='caine', username='alfred', password='123')
+        self.user = User.objects.create(first_name='michael',
+                                        last_name='caine',
+                                        username='alfred',
+                                        password='123',
+                                        )
         self.user.save()
 
     def test_get_create_view(self):
@@ -52,7 +56,7 @@ class User_CRUD_test(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertTrue(User.objects.filter(username='legend').exists())
         self.assertRedirects(response, '/login/')
-    
+
     def test_get_update_user(self):
         self.client.force_login(self.user)
         response = self.client.get(reverse('user_update', args=[self.user.id]))
@@ -68,22 +72,25 @@ class User_CRUD_test(TestCase):
             'password1': '1234',
             'password2': '1234'
             }).data
-        response = self.client.post(reverse('user_update', args=[self.user.id]), new_data)
+        response = self.client.post(
+            reverse('user_update', args=[self.user.id]),
+            new_data)
         self.user.refresh_from_db()
         self.assertEqual(self.user.username, 'gotem')
         self.assertFalse(User.objects.filter(username='alfred').exists())
         self.assertRedirects(response, '/users/')
         self.assertEqual(response.status_code, 302)
-    
+
     def test_get_delete_user(self):
         self.client.force_login(self.user)
         response = self.client.get(reverse('user_delete', args=[self.user.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'user/user_delete.html')
-    
+
     def test_post_delete_user(self):
         self.client.force_login(self.user)
-        response = self.client.delete(reverse('user_delete', args=[self.user.id]))
+        response = self.client.delete(
+            reverse('user_delete', args=[self.user.id]))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/')
         self.assertFalse(User.objects.filter(username='gotem').exists())

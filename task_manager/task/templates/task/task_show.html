@@ -21,9 +21,9 @@
               <li class="list-group-item">Дата создания: {{ task.created_at }}</li>
             </ul>
           <div class="col">
-            <a href="#">Изменить</a>
+            <a href="{% url 'task_update' task.id %}">Изменить</a>
             <br>
-            <a href="#">Удалить</a>
+            <a href="{% url 'task_delete' task.id %}">Удалить</a>
           </div>
         </div>
     </div>

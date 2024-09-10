@@ -1,9 +1,8 @@
-from django.shortcuts import render, redirect
-from django.views import View
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from task_manager.user.models import User
 from .forms import UserCreateForm, UserUpdateForm
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 
@@ -19,14 +18,14 @@ class AuthenticationCheckMixin:
             return super().dispatch(request, *args, **kwargs)
         else:
             messages.error(request,
-                           "У вас нет прав для изменения другого пользователя.")
+                           "У вас нет прав для изменения другого пользователя")
             return redirect('users')
 
 
-class UsersListView(View):
-    def get(self, request, *args, **kwargs):
-        users = User.objects.all().order_by('id')
-        return render(request, 'user/users.html', context={'users': users})
+class UsersListView(ListView):
+    model = User
+    template_name = 'user/users.html'
+    queryset = User.objects.all().order_by('id')
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):

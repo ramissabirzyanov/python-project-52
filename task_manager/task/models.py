@@ -3,7 +3,6 @@ from task_manager.user.models import User
 from task_manager.status.models import Status
 
 
-
 class Task(models.Model):
     name = models.CharField(max_length=200, unique=True)
     description = models.TextField(blank=True)

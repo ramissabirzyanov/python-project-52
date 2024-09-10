@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<div class="p-5 mb-3">
+    <h1>Удаление пользователя</h1>
+    <p> Вы уверены, что хотите удалить {{task.name}}?</p>
+
+    <form action="{% url 'task_delete' task.id %}" method="post" class="form">
+        {% csrf_token %}
+
+        {% bootstrap_button button_type="submit" content="Да, удалить" button_class="btn btn-dark"%}
+    </form>
+</div>
+{% endblock %}
