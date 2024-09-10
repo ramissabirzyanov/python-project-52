@@ -17,4 +17,4 @@ class Task(models.Model):
         db_table = 'Task'
 
     def __str__(self):
-        return f"Задача {self.name} от {self.author}. Исполняет {self.executor}"
+        return f"Задача {self.name} от {self.author}. Cтатус {self.status}. Исполняет {self.executor}"

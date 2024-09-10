@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
-from django.views import View
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from task_manager.status.models import Status
+from task_manager.task.models import Task
 from .forms import StatusCreateForm, StatusUpdateForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.db.models import ProtectedError
 
 
 class LoginRequiredMixin(object):
@@ -46,3 +47,18 @@ class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'status/status_delete.html'
     success_url = reverse_lazy('statuses')
     success_message = 'Статус успешно удален'
+
+    def post(self, request, *args, **kwargs):
+        status = self.get_object()
+        if Task.objects.filter(status_id=status.id):
+            messages.error(request, 'Невозможно удалить статус, потому что он используется')
+            return redirect('statuses')
+        return super(StatusDeleteView, self).delete(*args, **kwargs)
+
+
+# def post(self, request, *args, **kwargs):
+#         try:
+#             return self.delete(request, *args, **kwargs)
+#         except ProtectedError:
+#             messages.error(request, 'Невозможно удалить статус, потому что он используется')
+#             return redirect('statuses')

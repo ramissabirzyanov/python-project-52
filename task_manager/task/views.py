@@ -1,12 +1,11 @@
-from django.shortcuts import get_object_or_404
-from django.views import View
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from task_manager.task.models import Task
 from task_manager.status.views import LoginRequiredMixin
 from .forms import TaskCreateForm
 from django.views.generic import CreateView, ListView, DetailView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib import messages
+
 
 class TasksListView(LoginRequiredMixin, ListView):
     model = Task
