@@ -8,7 +8,7 @@ urlpatterns = [
     path('', views.index, name='main_page'),
     path('users/', include('task_manager.user.urls'), name='users'),
     path('statuses/', include('task_manager.status.urls'), name='statuses'),
-    # path('tasks/', include('task_manager.task.urls'), name='tasks'),
+    path('tasks/', include('task_manager.task.urls'), name='tasks'),
     path('login/', views.UserLoginView.as_view(), name='login'),
     path('logout/', views.UserLogoutView.as_view(), name='logout'),
     

@@ -6,13 +6,15 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-
+<div class="p-5 mb-3">
 <h1>Задачи</h1>
-<form action="{% url 'task_create' %}" method="post" class="form">
+<form action="{% url 'task_create' %}" class="form">
     {% csrf_token %}
 
     {% bootstrap_button button_type="submit" content="Создать задачу" button_class="btn btn-dark"%}
 </form>
+</div>
+<div class="container-fluid row p-5">
 <table class="table table-striped">
     <thead>
       <tr>
@@ -26,21 +28,22 @@
       </tr>
     </thead>
     <tbody>
-      {% for task in tasks %}
+      {% for task in task_list %}
       <tr>
-        <th scope="row">{{ task.pk }}</th>
-        <td>{{ task.name }}</td>
+        <th scope="row">{{ task.id }}</th>
+        <td><a href="{% url 'task_detail' task.id %}">{{ task.name }}</a></td>
         <td>{{ task.status }}</td>
-        <td>{{ task.author }}</td>
-        <td>{{ task.executor }}</td>
-        <td>{{ user.created_at|date:"d-m-Y h:s" }}</td>
+        <td>{{ task.author.first_name }} {{ task.author.last_name }}</td>
+        <td>{{ task.executor.first_name|default_if_none:""}} {{ task.executor.last_name}}</td>
+        <td>{{ task.created_at|date:"d-m-Y h:s" }}</td>
         <td>
-          <a href="{% url 'task_update' task.pk %}">Изменить</a>
+          <a href="#">Изменить</a>
           <br>
-          <a href="{% url 'task_delete' task.pk %}">Удалить</a>
+          <a href="#">Удалить</a>
         </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+</div>
 {% endblock %}

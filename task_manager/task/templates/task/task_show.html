@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block content%}
+
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<div class="container my-4">
+    <h1>Просмотр задачи</h1>
+    <div class="card border-dark mb-3" style="max-width: 60rem;">
+        <div class="card-header">{{ task.name }}</div>
+        <div class="card-body text-dark">
+          <h5 class="card-title">{{ task.description}}</h5>
+          <hr>
+            <ul class="container">
+              <li class="list-group-item">Автор: {{ task.author.first_name }} {{ task.author.last_name }}</li>
+              <li class="list-group-item">Исполнитель: {{ task.executor.first_name }} {{ task.executor.last_name }}</li>
+              <li class="list-group-item">Статус: {{ task.status }}</li>
+              <li class="list-group-item">Дата создания: {{ task.created_at }}</li>
+            </ul>
+          <div class="col">
+            <a href="#">Изменить</a>
+            <br>
+            <a href="#">Удалить</a>
+          </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
