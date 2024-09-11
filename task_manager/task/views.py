@@ -14,6 +14,7 @@ class TasksListView(LoginRequiredMixin, ListView):
     queryset = Task.objects.all().order_by('id')
 
 
+
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Task
     form_class = TaskCreateForm
@@ -23,7 +24,7 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form)
+        return super(TaskCreateView, self).form_valid(form)
 
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
@@ -49,7 +50,7 @@ class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     def dispatch(self, request, *args, **kwargs):
         task = self.get_object()
         if request.user.id == task.author_id:
-            return super().dispatch(request, *args, **kwargs)
+            return super(TaskDeleteView, self).dispatch(request, *args, **kwargs)
         else:
             messages.error(request,
                            "Задачу может удалить только ее автор")

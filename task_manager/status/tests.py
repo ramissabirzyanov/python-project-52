@@ -2,13 +2,12 @@ from django.test import TestCase
 from django.urls import reverse
 from task_manager.status.models import Status
 from task_manager.user.models import User
-from task_manager.status.forms import StatusCreateForm
+from task_manager.status.forms import StatusCreateForm, StatusUpdateForm
 
 
 class StatusViewsTest(TestCase):
     def setUp(self):
         self.user = User.objects.create(first_name='Bruce', last_name='Lee', username='water', password='1234')
-        self.user.save()
         self.client.force_login(self.user)
 
     def test_statuses_list_view(self):
@@ -19,7 +18,6 @@ class StatusViewsTest(TestCase):
 class StatusModelTest(TestCase):
     def setUp(self):
         self.status = Status.objects.create(name='готово')
-        self.status.save()
 
     def test_name_label(self):
         status = Status.objects.get(id=1)
@@ -31,10 +29,9 @@ class Status_CRUD_test(TestCase):
 
     def setUp(self):
         self.user = User.objects.create(first_name='Bruce', last_name='Lee', username='water', password='1234')
-        self.user.save()
         self.client.force_login(self.user)
         self.status = Status.objects.create(name='на тестировании')
-        self.status.save()
+
 
     def test_get_status_create(self):
         response = self.client.get(reverse('status_create'))
@@ -56,7 +53,7 @@ class Status_CRUD_test(TestCase):
         self.assertTemplateUsed(response, 'status/status_update.html')
 
     def test_post_status_update(self):
-        new_form_data = StatusCreateForm(data={
+        new_form_data = StatusUpdateForm(data={
             'name': 'приостановлена',
             }).data
         response = self.client.post(reverse('status_update', args=[self.status.id]), new_form_data)

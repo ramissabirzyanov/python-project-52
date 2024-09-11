@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from task_manager.user.models import User
-from task_manager.user.forms import UserCreateForm
+from task_manager.user.forms import UserCreateForm, UserUpdateForm
 
 
 class UsersViewsTest(TestCase):
@@ -37,7 +37,8 @@ class User_CRUD_test(TestCase):
                                         username='alfred',
                                         password='123',
                                         )
-        self.user.save()
+        self.client.force_login(self.user)
+        
 
     def test_get_create_view(self):
         response = self.client.get(reverse('user_create'))
@@ -58,14 +59,12 @@ class User_CRUD_test(TestCase):
         self.assertRedirects(response, '/login/')
 
     def test_get_update_user(self):
-        self.client.force_login(self.user)
         response = self.client.get(reverse('user_update', args=[self.user.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'user/user_update.html')
 
     def test_post_update_user(self):
-        self.client.force_login(self.user)
-        new_data = UserCreateForm(data={
+        new_data = UserUpdateForm(data={
             'first_name': 'michael',
             'last_name': 'caine',
             'username': 'gotem',
@@ -82,13 +81,11 @@ class User_CRUD_test(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_get_delete_user(self):
-        self.client.force_login(self.user)
         response = self.client.get(reverse('user_delete', args=[self.user.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'user/user_delete.html')
 
     def test_post_delete_user(self):
-        self.client.force_login(self.user)
         response = self.client.delete(
             reverse('user_delete', args=[self.user.id]))
         self.assertEqual(response.status_code, 302)
