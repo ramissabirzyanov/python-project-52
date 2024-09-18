@@ -7,7 +7,7 @@
 {% bootstrap_javascript %}
 
 <div class="p-5 mb-3">
-    <h1>Удаление пользователя</h1>
+    <h1>Удаление статуса</h1>
     <p> Вы уверены, что хотите удалить {{status.name}}?</p>
 
     <form action="{% url 'status_delete' pk=status.id %}" method="post" class="form">
