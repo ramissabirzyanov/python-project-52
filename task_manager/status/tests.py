@@ -39,9 +39,9 @@ class Status_CRUD_test(TestCase):
         self.assertTemplateUsed(response, 'status/status_create.html')
 
     def test_post_status_create(self):
-        form_data = StatusCreateForm(data={
+        form_data = {
             'name': 'готово',
-            }).data
+            }
         response = self.client.post(reverse('status_create'), form_data)
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Status.objects.filter(name='готово').exists())
