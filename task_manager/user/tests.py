@@ -64,7 +64,7 @@ class User_CRUD_test(TestCase):
         self.assertTemplateUsed(response, 'user/user_update.html')
 
     def test_post_update_user(self):
-        new_data = {
+        new_form_data = {
             'first_name': 'michael',
             'last_name': 'caine',
             'username': 'gotem',
@@ -73,7 +73,7 @@ class User_CRUD_test(TestCase):
             }
         response = self.client.post(
             reverse('user_update', args=[self.user.id]),
-            new_data)
+            new_form_data)
         self.user.refresh_from_db()
         self.assertEqual(self.user.username, 'gotem')
         self.assertFalse(User.objects.filter(username='alfred').exists())
