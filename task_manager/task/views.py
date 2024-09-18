@@ -1,9 +1,12 @@
-from django.shortcuts import redirect
+from django.db.models.query import QuerySet
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from task_manager.task.models import Task
+from task_manager.task.filters import TaskFilter
 from task_manager.status.views import LoginRequiredMixin
-from .forms import TaskCreateForm, TaskUpdateForm
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from .forms import TaskCreateForm, TaskUpdateForm, TaskFilterForm
+from django_filters.views import FilterView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 
@@ -11,8 +14,19 @@ from django.contrib import messages
 class TasksListView(LoginRequiredMixin, ListView):
     model = Task
     template_name = 'task/tasks.html'
-    queryset = Task.objects.all().order_by('id')
+    queryset = Task.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset().order_by('id')
+        self.filter = TaskFilter(self.request.GET, queryset=queryset)
+        if self.request.GET.get('self_tasks'):
+            self.filter = TaskFilter(self.request.GET, queryset=Task.objects.filter(author=self.request.user))
+        return self.filter.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.filter.form
+        return context
 
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -29,7 +43,7 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
-    template_name = 'task/task_show.html'
+    template_name = 'task/task_detail.html'
 
 
 class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

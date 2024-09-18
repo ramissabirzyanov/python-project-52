@@ -44,7 +44,7 @@ class Task_CRUD_test(TestCase):
 
 
     def test_get_task_create(self):
-        response = self.client.get(reverse('task_create'))
+        response = self.client.get(reverse('task:task_create'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'task/task_create.html')
 
@@ -54,7 +54,7 @@ class Task_CRUD_test(TestCase):
             'description': 'must watch it!',
             'status': self.status2,
             }).data
-        response = self.client.post(reverse('task_create'), form_data)
+        response = self.client.post(reverse('task_create'), form_data, follow=True)
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Task.objects.filter(name='Totoro').exists())
         task = Task.objects.get(name='Totoro')
@@ -73,7 +73,7 @@ class Task_CRUD_test(TestCase):
             'name': 'The matrix has you',
             'description': 'follow the white rabbit',
             }).data
-        response = self.client.post(reverse('task_update', args=[self.task.id]), new_form_data)
+        response = self.client.post(reverse('task_update', args=[self.task.id]), new_form_data, follow=True)
         self.task.refresh_from_db()
         self.assertEqual(response.status_code, 302)
         self.assertEqual(self.task.description, 'follow the white rabbit')

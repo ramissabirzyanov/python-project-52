@@ -17,6 +17,7 @@ uvicorn = "^0.30.6"
 django-bootstrap5 = "^24.2"
 django-extensions = "^3.2.3"
 coverage = "^7.6.1"
+django-filter = "^24.3"
 
 
 [tool.poetry.group.dev.dependencies]
