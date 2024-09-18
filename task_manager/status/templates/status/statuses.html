@@ -6,15 +6,15 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-<div class="p-5 mb-3">
+<div class="container row p-5">
   <h1>Статусы</h1>
   <form action="{% url 'status_create' %}" class="form">
 
       {% bootstrap_button button_type="submit" content="Создать статус" button_class="btn btn-dark"%}
   </form>
 </div>
-<div class="container-fluid row p-5">
-  <table class="table table-striped ">
+<div class="col p-5">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">ID</th>
