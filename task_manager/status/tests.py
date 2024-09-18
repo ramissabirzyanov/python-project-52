@@ -53,9 +53,9 @@ class Status_CRUD_test(TestCase):
         self.assertTemplateUsed(response, 'status/status_update.html')
 
     def test_post_status_update(self):
-        new_form_data = StatusUpdateForm(data={
+        new_form_data = {
             'name': 'приостановлена',
-            }).data
+            }
         response = self.client.post(reverse('status_update', args=[self.status.id]), new_form_data)
         self.status.refresh_from_db()
         self.assertEqual(self.status.name, 'приостановлена')

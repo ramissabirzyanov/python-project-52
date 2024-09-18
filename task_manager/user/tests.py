@@ -46,13 +46,13 @@ class User_CRUD_test(TestCase):
         self.assertTemplateUsed(response, 'user/user_create.html')
 
     def test_post_create_view(self):
-        form_data = UserCreateForm(data={
+        form_data = {
             'first_name': 'jeckie',
             'last_name': 'chan',
             'username': 'legend',
             'password1': '123',
             'password2': '123',
-            }).data
+            }
         response = self.client.post(reverse('user_create'), form_data)
         self.assertEqual(response.status_code, 302)
         self.assertTrue(User.objects.filter(username='legend').exists())
@@ -64,13 +64,13 @@ class User_CRUD_test(TestCase):
         self.assertTemplateUsed(response, 'user/user_update.html')
 
     def test_post_update_user(self):
-        new_data = UserUpdateForm(data={
+        new_data = {
             'first_name': 'michael',
             'last_name': 'caine',
             'username': 'gotem',
             'password1': '1234',
             'password2': '1234'
-            }).data
+            }
         response = self.client.post(
             reverse('user_update', args=[self.user.id]),
             new_data)
