@@ -1,11 +1,9 @@
-from django.db.models.query import QuerySet
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from task_manager.task.models import Task
 from task_manager.task.filters import TaskFilter
 from task_manager.status.views import LoginRequiredMixin
-from .forms import TaskCreateForm, TaskUpdateForm, TaskFilterForm
-from django_filters.views import FilterView
+from .forms import TaskCreateForm, TaskUpdateForm
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
