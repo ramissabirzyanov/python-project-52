@@ -1,7 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from task_manager.user.models import User
-from task_manager.user.forms import UserCreateForm, UserUpdateForm
 
 
 class UsersViewsTest(TestCase):
@@ -38,7 +37,6 @@ class User_CRUD_test(TestCase):
                                         password='123',
                                         )
         self.client.force_login(self.user)
-        
 
     def test_get_create_view(self):
         response = self.client.get(reverse('user_create'))

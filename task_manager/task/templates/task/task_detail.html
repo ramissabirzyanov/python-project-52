@@ -19,7 +19,17 @@
               <li class="list-group-item">Исполнитель: {{ task.executor.first_name }} {{ task.executor.last_name }}</li>
               <li class="list-group-item">Статус: {{ task.status }}</li>
               <li class="list-group-item">Дата создания: {{ task.created_at }}</li>
-            </ul>
+              <li class="list-group-item">Метки:</li>
+            <div class="col">
+              <ul>
+                {% if task.labels %}
+                  {% for label in task.labels.all %}
+                    <li>{{ label }}</li>
+                  {% endfor %}
+                {% endif%}
+              </ul>
+            </ul>  
+            </div>
           <div class="col">
             <a href="{% url 'task_update' task.id %}">Изменить</a>
             <br>

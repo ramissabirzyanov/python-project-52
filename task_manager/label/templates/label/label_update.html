@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block content%}
+
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+<div class="p-5 mb-3">
+    <h1>Изменение метки</h1>
+
+    <form action="{% url 'label_update' pk=label.id %}" method="post" class="form">
+        {% csrf_token %}
+
+        {% bootstrap_form form %}
+
+        {% bootstrap_button button_type="submit" content="Изменить" button_class="btn btn-dark"%}
+    </form>
+</div>
+{% endblock %}

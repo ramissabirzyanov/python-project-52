@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.urls import reverse
 from task_manager.status.models import Status
 from task_manager.user.models import User
-from task_manager.status.forms import StatusCreateForm, StatusUpdateForm
 
 
 class StatusViewsTest(TestCase):
@@ -31,7 +30,6 @@ class Status_CRUD_test(TestCase):
         self.user = User.objects.create(first_name='Bruce', last_name='Lee', username='water', password='1234')
         self.client.force_login(self.user)
         self.status = Status.objects.create(name='на тестировании')
-
 
     def test_get_status_create(self):
         response = self.client.get(reverse('status_create'))

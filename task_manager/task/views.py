@@ -17,7 +17,7 @@ class TasksListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = super().get_queryset().order_by('id')
         self.filter = TaskFilter(self.request.GET, queryset=queryset)
-        if self.request.GET.get('self_tasks'):
+        if self.request.GET.get('user_tasks'):
             self.filter = TaskFilter(self.request.GET, queryset=Task.objects.filter(author=self.request.user))
         return self.filter.qs
 

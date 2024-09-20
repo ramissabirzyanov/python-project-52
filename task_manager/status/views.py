@@ -5,7 +5,6 @@ from task_manager.task.models import Task
 from .forms import StatusCreateForm, StatusUpdateForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
 
