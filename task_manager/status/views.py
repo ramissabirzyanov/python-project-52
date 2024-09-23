@@ -6,15 +6,7 @@ from .forms import StatusCreateForm, StatusUpdateForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-
-
-class LoginRequiredMixin(object):
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(request,
-                           "Вы не авторизованы! Пожалуйста, выполните вход.")
-            return redirect('login')
-        return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+from task_manager.utils import LoginRequiredMixin
 
 
 class StatusListView(LoginRequiredMixin, ListView):
@@ -49,7 +41,8 @@ class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     def post(self, request, *args, **kwargs):
         status = self.get_object()
         if Task.objects.filter(status_id=status.id):
-            messages.error(request, 'Невозможно удалить статус, потому что он используется')
+            messages.error(
+                request, 'Невозможно удалить статус, потому что он используется')
             return redirect('statuses')
         messages.success(self.request, self.success_message)
-        return super(StatusDeleteView, self).delete(request, *args, **kwargs)
+        return super().delete(request, *args, **kwargs)

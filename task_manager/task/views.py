@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from task_manager.task.models import Task
 from task_manager.task.filters import TaskFilter
-from task_manager.status.views import LoginRequiredMixin
+from task_manager.utils import LoginRequiredMixin
 from .forms import TaskCreateForm, TaskUpdateForm
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -51,8 +51,8 @@ class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     def dispatch(self, request, *args, **kwargs):
         task = self.get_object()
         if request.user.id == task.author_id:
-            return super(TaskDeleteView, self).dispatch(request, *args, **kwargs)
+            return super().dispatch(request, *args, **kwargs)
         else:
-            messages.error(request,
-                           "Задачу может удалить только ее автор")
+            messages.error(
+                request, "Задачу может удалить только ее автор")
             return redirect('tasks')

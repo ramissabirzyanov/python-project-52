@@ -7,7 +7,11 @@ from task_manager.task.models import Task
 
 class TaskViewsTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create(first_name='Robert', last_name='De Niro', username='taxi', password='123')
+        self.user = User.objects.create(
+            first_name='Robert',
+            last_name='De Niro',
+            username='taxi',
+            password='123')
         self.client.force_login(self.user)
 
     def test_task_list_view(self):
@@ -17,10 +21,15 @@ class TaskViewsTest(TestCase):
 
 class TaskModelTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create(first_name='Robert', last_name='De Niro', username='taxi', password='123')
+        self.user = User.objects.create(
+            first_name='Robert',
+            last_name='De Niro',
+            username='taxi',
+            password='123')
         self.client.force_login(self.user)
         self.status = Status.objects.create(name='тест')
-        self.task = Task.objects.create(name='LOTR', status=self.status, author=self.user)
+        self.task = Task.objects.create(
+            name='LOTR', status=self.status, author=self.user)
 
     def test_name_label(self):
         task = Task.objects.get(id=1)
@@ -35,11 +44,16 @@ class TaskModelTest(TestCase):
 class Task_CRUD_test(TestCase):
 
     def setUp(self):
-        self.user = User.objects.create(first_name='Al', last_name='Pacino', username='Scarface', password='123')
+        self.user = User.objects.create(
+            first_name='Al',
+            last_name='Pacino',
+            username='Scarface',
+            password='123')
         self.client.force_login(self.user)
         self.status1 = Status.objects.create(name='test_status1')
         self.status2 = Status.objects.create(name='test_status2')
-        self.task = Task.objects.create(name='The matrix', status_id=self.status1.id, author_id=self.user.id)
+        self.task = Task.objects.create(
+            name='The matrix', status_id=self.status1.id, author_id=self.user.id)
 
     def test_get_task_create(self):
         response = self.client.get(reverse('task_create'))
@@ -55,7 +69,7 @@ class Task_CRUD_test(TestCase):
             }
         response = self.client.post(reverse('task_create'), form_data)
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(Task.objects.count(), task_count+1)
+        self.assertEqual(Task.objects.count(), task_count + 1)
         self.assertTrue(Task.objects.filter(name='Totoro').exists())
         task = Task.objects.get(name='Totoro')
         self.assertEqual(task.author_id, self.user.id)
@@ -75,7 +89,8 @@ class Task_CRUD_test(TestCase):
             'description': 'follow the white rabbit',
             'status': self.status2.id,
             }
-        response = self.client.post(reverse('task_update', args=[self.task.id]), new_form_data)
+        response = self.client.post(
+            reverse('task_update', args=[self.task.id]), new_form_data)
         self.task.refresh_from_db()
         self.assertEqual(response.status_code, 302)
         self.assertEqual(self.task.description, 'follow the white rabbit')
@@ -89,7 +104,8 @@ class Task_CRUD_test(TestCase):
         self.assertTemplateUsed(response, 'task/task_delete.html')
 
     def test_post_task_delete(self):
-        response = self.client.delete(reverse('task_delete', args=[self.task.id]))
+        response = self.client.delete(
+            reverse('task_delete', args=[self.task.id]))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/tasks/')
-        self.assertFalse(Status.objects.filter(name='The matrix has you').exists())
+        self.assertEqual(Task.objects.count(), 0)

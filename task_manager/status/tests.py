@@ -6,7 +6,11 @@ from task_manager.user.models import User
 
 class StatusViewsTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create(first_name='Bruce', last_name='Lee', username='water', password='1234')
+        self.user = User.objects.create(
+            first_name='Bruce',
+            last_name='Lee',
+            username='water',
+            password='1234')
         self.client.force_login(self.user)
 
     def test_statuses_list_view(self):
@@ -27,9 +31,13 @@ class StatusModelTest(TestCase):
 class Status_CRUD_test(TestCase):
 
     def setUp(self):
-        self.user = User.objects.create(first_name='Bruce', last_name='Lee', username='water', password='1234')
+        self.user = User.objects.create(
+            first_name='Bruce',
+            last_name='Lee',
+            username='water',
+            password='1234')
         self.client.force_login(self.user)
-        self.status = Status.objects.create(name='на тестировании')
+        self.status = Status.objects.create(name='test status')
 
     def test_get_status_create(self):
         response = self.client.get(reverse('status_create'))
@@ -46,28 +54,32 @@ class Status_CRUD_test(TestCase):
         self.assertRedirects(response, '/statuses/')
 
     def test_get_status_update(self):
-        response = self.client.get(reverse('status_update', args=[self.status.id]))
+        response = self.client.get(
+            reverse('status_update', args=[self.status.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'status/status_update.html')
 
     def test_post_status_update(self):
         new_form_data = {
-            'name': 'приостановлена',
+            'name': 'updated status',
             }
-        response = self.client.post(reverse('status_update', args=[self.status.id]), new_form_data)
+        response = self.client.post(
+            reverse('status_update', args=[self.status.id]), new_form_data)
         self.status.refresh_from_db()
-        self.assertEqual(self.status.name, 'приостановлена')
-        self.assertFalse(Status.objects.filter(name='на тестировании').exists())
+        self.assertEqual(self.status.name, 'updated status')
+        self.assertFalse(Status.objects.filter(name='test status').exists())
         self.assertRedirects(response, '/statuses/')
         self.assertEqual(response.status_code, 302)
 
     def test_get_status_delete(self):
-        response = self.client.get(reverse('status_delete', args=[self.status.id]))
+        response = self.client.get(
+            reverse('status_delete', args=[self.status.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'status/status_delete.html')
 
     def test_post_status_delete(self):
-        response = self.client.delete(reverse('status_delete', args=[self.status.id]))
+        response = self.client.delete(
+            reverse('status_delete', args=[self.status.id]))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/statuses/')
-        self.assertFalse(Status.objects.filter(name='приостановлена').exists())
+        self.assertEqual(Status.objects.count(), 0)

@@ -6,7 +6,7 @@ from .forms import LabelCreateForm, LabelUpdateForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from task_manager.status.views import LoginRequiredMixin
+from task_manager.utils import LoginRequiredMixin
 
 
 class LabelListView(LoginRequiredMixin, ListView):
@@ -40,7 +40,8 @@ class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         if Task.objects.filter(labels__in=Label.objects.all()):
-            messages.error(request, 'Невозможно удалить метку, потому что она используется')
+            messages.error(
+                request, 'Невозможно удалить метку, потому что она используется')
             return redirect('labels')
         messages.success(self.request, self.success_message)
         return super(LabelDeleteView, self).delete(request, *args, **kwargs)

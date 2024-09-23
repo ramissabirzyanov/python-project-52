@@ -2,6 +2,7 @@ from task_manager.task.models import Task
 from django import forms
 from task_manager.utils import UniqueNameErrorMixin
 
+
 class TaskCreateForm(forms.ModelForm, UniqueNameErrorMixin):
 
     class Meta:
