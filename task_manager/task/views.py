@@ -15,18 +15,6 @@ class TasksListView(LoginRequiredMixin, FilterView):
     template_name = 'task/tasks.html'
     queryset = Task.objects.all()
 
-    # def get_queryset(self):
-    #     queryset = super().get_queryset().order_by('id')
-    #     self.filter = TaskFilter(self.request.GET, queryset=queryset)
-    #     if self.request.GET.get('user_tasks'):
-    #         self.filter = TaskFilter(self.request.GET, queryset=Task.objects.filter(author=self.request.user))
-    #     return self.filter.qs
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['form'] = self.filter.form
-    #     return context
-
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Task

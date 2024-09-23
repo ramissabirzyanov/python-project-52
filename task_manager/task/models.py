@@ -15,6 +15,7 @@ class Task(models.Model):
 
     class Meta:
         db_table = 'Task'
+        verbose_name = 'Задача'
 
     def get_labels(self):
         return ",".join([str(label) for label in self.labels.all()])

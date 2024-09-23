@@ -1,13 +1,6 @@
 from task_manager.label.models import Label
-from django.forms import ModelForm, ValidationError
-
-
-class UniqueNameErrorMixin:
-    def clean_name(self):
-        name = self.cleaned_data['name']
-        if Label.objects.filter(name=name).exists():
-            raise ValidationError('Метка с таким именем уже существует.')
-        return name
+from django.forms import ModelForm
+from task_manager.utils import UniqueNameErrorMixin
 
 
 class LabelCreateForm(ModelForm, UniqueNameErrorMixin):

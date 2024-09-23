@@ -7,6 +7,7 @@ class Status(models.Model):
 
     class Meta:
         db_table = 'Status'
+        verbose_name = 'Cтатус'
 
     def __str__(self):
         return self.name

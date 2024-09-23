@@ -7,6 +7,7 @@ class Label(models.Model):
 
     class Meta:
         db_table = 'Label'
+        verbose_name = 'Метка'
 
     def __str__(self):
         return self.name
