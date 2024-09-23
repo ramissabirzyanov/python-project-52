@@ -16,10 +16,10 @@ class TaskFilter(django_filters.FilterSet):
                                               label=('Только свои задачи'))
 
     def filter_user_tasks(self, queryset, name, value):
-        if self.request is None:
+        if self.request.GET.get('user_tasks') is None:
             return queryset
         else:
-            return queryset.filter(value)
+            return queryset.filter(author=self.request.user)
 
     class Meta:
         model = Task

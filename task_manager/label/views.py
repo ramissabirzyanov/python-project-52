@@ -8,6 +8,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from task_manager.status.views import LoginRequiredMixin
 
+
 class LabelListView(LoginRequiredMixin, ListView):
     model = Label
     template_name = 'label/labels.html'
@@ -31,7 +32,6 @@ class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = 'Метка успешна изменена'
 
 
-
 class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Label
     template_name = 'label/label_delete.html'
@@ -44,4 +44,3 @@ class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
             return redirect('labels')
         messages.success(self.request, self.success_message)
         return super(LabelDeleteView, self).delete(request, *args, **kwargs)
-
