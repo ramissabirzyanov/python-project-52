@@ -42,7 +42,8 @@ class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         status = self.get_object()
         if Task.objects.filter(status_id=status.id):
             messages.error(
-                request, 'Невозможно удалить статус, потому что он используется')
+                request,
+                'Невозможно удалить статус, потому что он используется')
             return redirect('statuses')
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)

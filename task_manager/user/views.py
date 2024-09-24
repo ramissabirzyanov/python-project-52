@@ -6,22 +6,8 @@ from .forms import UserCreateForm, UserUpdateForm
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from task_manager.utils import AuthenticationCheckMixin
-
-
-# class AuthenticationCheckMixin:
-#     def dispatch(self, request, *args, **kwargs):
-#         current_user = self.get_object()
-#         if not request.user.is_authenticated:
-#             messages.error(request,
-#                            "Вы не авторизованы! Пожалуйста, выполните вход.")
-#             return redirect('login')
-#         if request.user.username == current_user.username:
-#             return super().dispatch(request, *args, **kwargs)
-#         else:
-#             messages.error(request,
-#                            "У вас нет прав для изменения другого пользователя")
-#             return redirect('users')
+from task_manager.utils import CurrentUserCheckMixin
+from django.db.models import Q
 
 
 class UsersListView(ListView):
@@ -37,16 +23,15 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     success_message = 'Пользователь успешно зарегистрирован'
 
 
-class UserUpdateView(AuthenticationCheckMixin, SuccessMessageMixin, UpdateView):
+class UserUpdateView(CurrentUserCheckMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = UserUpdateForm
     template_name = 'user/user_update.html'
     success_url = reverse_lazy('users')
-    login_url = 'login'
     success_message = 'Пользователь успешно изменен'
 
 
-class UserDeleteView(AuthenticationCheckMixin, SuccessMessageMixin, DeleteView):
+class UserDeleteView(CurrentUserCheckMixin, SuccessMessageMixin, DeleteView):
     model = User
     template_name = 'user/user_delete.html'
     success_url = reverse_lazy('main_page')
@@ -54,9 +39,10 @@ class UserDeleteView(AuthenticationCheckMixin, SuccessMessageMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         user = self.get_object()
-        if Task.objects.filter(author_id=user.id) or Task.objects.filter(executor_id=user.id):
+        if Task.objects.filter(Q(author_id=user.id) | Q(executor_id=user.id)): #or Task.objects.filter(executor_id=user.id):
             messages.error(
-                request, 'Невозможно удалить пользователя, потому что он используется')
+                request,
+                'Невозможно удалить пользователя, потому что он используется')
             return redirect('users')
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)

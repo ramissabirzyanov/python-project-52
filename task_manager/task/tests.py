@@ -53,7 +53,9 @@ class Task_CRUD_test(TestCase):
         self.status1 = Status.objects.create(name='test_status1')
         self.status2 = Status.objects.create(name='test_status2')
         self.task = Task.objects.create(
-            name='The matrix', status_id=self.status1.id, author_id=self.user.id)
+            name='The matrix',
+            status_id=self.status1.id,
+            author_id=self.user.id)
 
     def test_get_task_create(self):
         response = self.client.get(reverse('task_create'))
@@ -75,8 +77,8 @@ class Task_CRUD_test(TestCase):
         self.assertEqual(task.author_id, self.user.id)
         self.assertRedirects(response, '/tasks/')
         self.assertEqual(task.status.name, 'test_status2')
-        task_detail_resp = self.client.get(reverse('task_detail', args=[task.id]))
-        self.assertEqual(task_detail_resp.status_code, 200)
+        task_detail = self.client.get(reverse('task_detail', args=[task.id]))
+        self.assertEqual(task_detail.status_code, 200)
 
     def test_get_task_update(self):
         response = self.client.get(reverse('task_update', args=[self.task.id]))

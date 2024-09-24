@@ -10,7 +10,7 @@ class StatusCreateForm(ModelForm, UniqueNameErrorMixin):
         fields = ["name"]
 
 
-class StatusUpdateForm(StatusCreateForm, UniqueNameErrorMixin):
+class StatusUpdateForm(ModelForm, UniqueNameErrorMixin):
 
     class Meta:
         model = Status
