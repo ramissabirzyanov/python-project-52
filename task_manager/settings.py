@@ -16,6 +16,7 @@ import os
 import dj_database_url
 import django
 from django.conf import settings
+import rollbar
 
 
 load_dotenv()
@@ -112,23 +113,7 @@ ROLLBAR = {
     'code_version': '1.0',
     'root': BASE_DIR,
 }
-
-# if django.VERSION >= (1, 10):
-#     settings.configure(
-#         DEBUG=DEBUG,
-#         SECRET_KEY=SECRET_KEY,
-#         ROOT_URLCONF=__name__,
-#         ROLLBAR = ROLLBAR,
-#         MIDDLEWARE = MIDDLEWARE,
-#     )
-# else:
-#     settings.configure(
-#         DEBUG=DEBUG,
-#         SECRET_KEY=SECRET_KEY,
-#         ROOT_URLCONF=__name__,
-#         ROLLBAR = ROLLBAR,
-#         MIDDLEWARE_CLASSES = MIDDLEWARE,
-#     )
+rollbar.init(**ROLLBAR)
 
 
 # Password validation
