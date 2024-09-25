@@ -16,7 +16,6 @@ class UniqueNameErrorMixin:
         return name
 
 
-
 class LoginRequiredMixin(object):
 
     def dispatch(self, request, *args, **kwargs):

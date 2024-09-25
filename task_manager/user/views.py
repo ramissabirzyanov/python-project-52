@@ -39,7 +39,7 @@ class UserDeleteView(CurrentUserCheckMixin, SuccessMessageMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         user = self.get_object()
-        if Task.objects.filter(Q(author_id=user.id) | Q(executor_id=user.id)): #or Task.objects.filter(executor_id=user.id):
+        if Task.objects.filter(Q(author_id=user.id) | Q(executor_id=user.id)):
             messages.error(
                 request,
                 'Невозможно удалить пользователя, потому что он используется')
