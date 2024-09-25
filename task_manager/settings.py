@@ -14,6 +14,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 import dj_database_url
+import django
+from django.conf import settings
 
 
 load_dotenv()
@@ -63,7 +65,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware'
+    'django.middleware.locale.LocaleMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -102,6 +105,30 @@ DATABASES['default'] = dj_database_url.config(
         conn_max_age=600,
         conn_health_checks=True
 )
+
+ROLLBAR = {
+    'access_token': '6b3c117a70714efea02ebfe1ab75583b',
+    'environment': 'development' if DEBUG else 'production',
+    'code_version': '1.0',
+    'root': BASE_DIR,
+}
+
+if django.VERSION >= (1, 10):
+    settings.configure(
+        DEBUG=DEBUG,
+        SECRET_KEY=SECRET_KEY,
+        ROOT_URLCONF=__name__,
+        ROLLBAR = ROLLBAR,
+        MIDDLEWARE = MIDDLEWARE,
+    )
+else:
+    settings.configure(
+        DEBUG=DEBUG,
+        SECRET_KEY=SECRET_KEY,
+        ROOT_URLCONF=__name__,
+        ROLLBAR = ROLLBAR,
+        MIDDLEWARE_CLASSES = MIDDLEWARE,
+    )
 
 
 # Password validation
