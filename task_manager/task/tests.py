@@ -3,8 +3,6 @@ from django.urls import reverse
 from task_manager.status.models import Status
 from task_manager.user.models import User
 from task_manager.task.models import Task
-from task_manager.label.models import Label
-from task_manager.task.filters import TaskFilter
 
 
 class TaskViewsTest(TestCase):
@@ -113,42 +111,3 @@ class Task_CRUD_test(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/tasks/')
         self.assertEqual(Task.objects.count(), 0)
-
-# class Task_Filter_test(TestCase):
-#     def setUp(self):
-#         self.user1 = User.objects.create(
-#         first_name='Jeckie',
-#         last_name='Chan',
-#         username='master',
-#         password='123')
-#         self.user2 = User.objects.create(
-#         first_name='Bruce',
-#         last_name='Lee',
-#         username='dragon',
-#         password='123')
-#         self.status1 = Status.objects.create(name='test_status1')
-#         self.status2 = Status.objects.create(name='test_status2')
-#         self.label1 = Label.objects.create(name='test_label1')
-#         self.label2 = Label.objects.create(name='test_label2')
-#         self.client.force_login(self.user1)
-#         self.task1 = Task.objects.create(
-#             name='test_task1',
-#             status_id=self.status1.id,
-#             author_id=self.user1.id)
-#         self.task1.labels.add(self.label1)
-#         self.task2 = Task.objects.create(
-#             name='test_task2',
-#             status_id=self.status2.id,
-#             author_id=self.user1.id,
-#             executor_id=self.user2.id)
-#         self.task2.labels.add(self.label1, self.label2)
-
-#     def test_filter_only_status(self):
-
-#         class F(TaskFilter):
-#             class Meta:
-#                 model = Task
-#                 fields = ['status']
-#         qs = Task.objects.all()
-#         f = F({'status': self.status1}, queryset=qs)
-#         self.assertQuerySetEqual(f.qs, [self.task1])

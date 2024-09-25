@@ -113,22 +113,22 @@ ROLLBAR = {
     'root': BASE_DIR,
 }
 
-if django.VERSION >= (1, 10):
-    settings.configure(
-        DEBUG=DEBUG,
-        SECRET_KEY=SECRET_KEY,
-        ROOT_URLCONF=__name__,
-        ROLLBAR = ROLLBAR,
-        MIDDLEWARE = MIDDLEWARE,
-    )
-else:
-    settings.configure(
-        DEBUG=DEBUG,
-        SECRET_KEY=SECRET_KEY,
-        ROOT_URLCONF=__name__,
-        ROLLBAR = ROLLBAR,
-        MIDDLEWARE_CLASSES = MIDDLEWARE,
-    )
+# if django.VERSION >= (1, 10):
+#     settings.configure(
+#         DEBUG=DEBUG,
+#         SECRET_KEY=SECRET_KEY,
+#         ROOT_URLCONF=__name__,
+#         ROLLBAR = ROLLBAR,
+#         MIDDLEWARE = MIDDLEWARE,
+#     )
+# else:
+#     settings.configure(
+#         DEBUG=DEBUG,
+#         SECRET_KEY=SECRET_KEY,
+#         ROOT_URLCONF=__name__,
+#         ROLLBAR = ROLLBAR,
+#         MIDDLEWARE_CLASSES = MIDDLEWARE,
+#     )
 
 
 # Password validation
