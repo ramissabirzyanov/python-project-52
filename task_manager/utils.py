@@ -1,4 +1,4 @@
-from django.forms import ValidationError
+from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.shortcuts import redirect
 

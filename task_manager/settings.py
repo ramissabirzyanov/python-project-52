@@ -14,9 +14,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 import dj_database_url
-import django
-from django.conf import settings
-import rollbar
 
 
 load_dotenv()
@@ -113,7 +110,6 @@ ROLLBAR = {
     'code_version': '1.0',
     'root': BASE_DIR,
 }
-rollbar.init(**ROLLBAR)
 
 
 # Password validation
