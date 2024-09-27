@@ -2,21 +2,21 @@
 
 
 {% block content%}
-
+{% load i18n %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
 
 <div class="p-5 mb-3">
-    <h1>Изменение статуса</h1>
+    <h1>{% translate 'Updating a status' %}</h1>
 
     <form action="{% url 'status_update' pk=status.id %}" method="post" class="form">
         {% csrf_token %}
 
         {% bootstrap_form form %}
-
-        {% bootstrap_button button_type="submit" content="Изменить" button_class="btn btn-dark"%}
+        {% translate "Update" as update %}
+        {% bootstrap_button button_type="submit" content=update button_class="btn btn-dark"%}
     </form>
 </div>
 {% endblock %}

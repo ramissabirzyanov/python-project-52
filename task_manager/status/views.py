@@ -7,6 +7,7 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from task_manager.utils import LoginRequiredMixin
+from django.utils.translation import gettext as _
 
 
 class StatusListView(LoginRequiredMixin, ListView):
@@ -20,7 +21,7 @@ class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = StatusCreateForm
     template_name = 'status/status_create.html'
     success_url = reverse_lazy('statuses')
-    success_message = 'Статус успешно создан'
+    success_message = _('The status has been successfully created')
 
 
 class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -29,21 +30,21 @@ class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'status/status_update.html'
     success_url = reverse_lazy('statuses')
     login_url = 'login'
-    success_message = 'Статус успешно изменен'
+    success_message = _('The status has been successfully updated')
 
 
 class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Status
     template_name = 'status/status_delete.html'
     success_url = reverse_lazy('statuses')
-    success_message = 'Статус успешно удален'
+    success_message = _('The status has been successfully deleted')
 
     def post(self, request, *args, **kwargs):
         status = self.get_object()
         if Task.objects.filter(status_id=status.id):
             messages.error(
                 request,
-                'Невозможно удалить статус, потому что он используется')
+                _('It is not possible to delete the status because it is in use'))
             return redirect('statuses')
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)

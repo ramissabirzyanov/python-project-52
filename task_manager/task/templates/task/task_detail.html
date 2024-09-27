@@ -2,24 +2,24 @@
 
 
 {% block content%}
-
+{% load i18n %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
 <div class="container my-4">
-    <h1>Просмотр задачи</h1>
+    <h1>{% translate "Task's detail" %}</h1>
     <div class="card border-dark mb-3" style="max-width: 60rem;">
         <div class="card-header">{{ task.name }}</div>
         <div class="card-body text-dark">
           <h5 class="card-title">{{ task.description}}</h5>
           <hr>
             <ul class="container">
-              <li class="list-group-item">Автор: {{ task.author.first_name }} {{ task.author.last_name }}</li>
-              <li class="list-group-item">Исполнитель: {{ task.executor.first_name }} {{ task.executor.last_name }}</li>
-              <li class="list-group-item">Статус: {{ task.status }}</li>
-              <li class="list-group-item">Дата создания: {{ task.created_at }}</li>
-              <li class="list-group-item">Метки:</li>
+              <li class="list-group-item">{% translate 'Author' %}: {{ task.author.first_name }} {{ task.author.last_name }}</li>
+              <li class="list-group-item">{% translate 'Executor' %}: {{ task.executor.first_name }} {{ task.executor.last_name }}</li>
+              <li class="list-group-item">{% translate 'Status' %}: {{ task.status }}</li>
+              <li class="list-group-item">{% translate 'Created at' %}: {{ task.created_at }}</li>
+              <li class="list-group-item">{% translate 'Labels' %}:</li>
             <div class="col">
               <ul>
                 {% if task.labels %}
@@ -31,9 +31,9 @@
             </ul>  
             </div>
           <div class="col">
-            <a href="{% url 'task_update' task.id %}">Изменить</a>
+            <a href="{% url 'task_update' task.id %}">{% translate 'Update' %}</a>
             <br>
-            <a href="{% url 'task_delete' task.id %}">Удалить</a>
+            <a href="{% url 'task_delete' task.id %}">{% translate 'Delete' %}</a>
           </div>
         </div>
     </div>

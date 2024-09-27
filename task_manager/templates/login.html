@@ -3,20 +3,20 @@
 
 
 {% block content %}
-
+{% load i18n %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
     <div class="p-5 mb-3">
-        <h1>Вход</h1>
+        <h1>{% translate 'Login' %}</h1>
 
         <form action="{% url 'login' %}" method="post" class="form">
             {% csrf_token %}
 
             {% bootstrap_form form %}
-
-            {% bootstrap_button button_type="submit" content="Войти" button_class="btn btn-dark"%}
+            {% translate 'Log in' as log_in %}
+            {% bootstrap_button button_type="submit" content=log_in button_class="btn btn-dark"%}
         </form>
     </div>
 {% endblock %}

@@ -24,3 +24,9 @@ shell:
 
 test:
 		python manage.py test
+
+msg:
+		python manage.py makemessages --ignore=".env"  -l en
+
+compile:
+		python manage.py compilemessages --ignore=".venv"  

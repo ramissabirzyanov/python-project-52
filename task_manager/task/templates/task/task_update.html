@@ -9,14 +9,14 @@
 
 
 <div class="p-5 mb-3">
-    <h1>Изменить задачу</h1>
+    <h1>Updating a task</h1>
 
     <form action="{% url 'task_update' task.id %}" method="post" class="form">
         {% csrf_token %}
 
         {% bootstrap_form form %}
-
-        {% bootstrap_button button_type="submit" content="Изменить" button_class="btn btn-dark"%}
+        {% translate "Update" as update %}
+        {% bootstrap_button button_type="submit" content=update button_class="btn btn-dark"%}
     </form>
 </div>
 {% endblock %}

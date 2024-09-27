@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content%}
-
+{% load i18n %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
 <div class="container row p-5">
-  <h1>Статусы</h1>
+  <h1>{% translate 'Labels' %}</h1>
   <form action="{% url 'label_create' %}" class="form">
-
-      {% bootstrap_button button_type="submit" content="Создать метку" button_class="btn btn-dark"%}
+      {% translate "Create a label" as create_a_label %}
+      {% bootstrap_button button_type="submit" content=create_a_label button_class="btn btn-dark"%}
   </form>
 </div>
 <div class="col p-5">
@@ -18,8 +18,8 @@
     <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">Имя</th>
-        <th scope="col">Дата создания</th>
+        <th scope="col">{% translate 'Name' %}</th>
+        <th scope="col">{% translate 'Created at' %}</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -30,9 +30,9 @@
         <td>{{ label.name }}</td>
         <td>{{ label.created_at|date:"d-m-Y h:s" }}</td>
         <td>
-          <a href="{% url 'label_update' label.id %}">Изменить</a>
+          <a href="{% url 'label_update' label.id %}">{% translate 'Update' %}</a>
           <br>
-          <a href="{% url 'label_delete' label.id %}">Удалить</a>
+          <a href="{% url 'label_delete' label.id %}">{% translate 'Delete' %}</a>
         </td>
       </tr>
       {% endfor %}

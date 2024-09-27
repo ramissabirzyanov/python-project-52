@@ -3,6 +3,7 @@ from .forms import UserLoginForm
 from django.contrib.auth import views
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.utils.translation import gettext as _
 
 
 def index(request):
@@ -12,7 +13,7 @@ def index(request):
 class UserLoginView(SuccessMessageMixin, views.LoginView):
     template_name = "login.html"
     authentication_form = UserLoginForm
-    success_message = 'Вы залогинены'
+    success_message = _('You are logged in')
 
 
 class UserLogoutView(views.LogoutView):
@@ -20,5 +21,5 @@ class UserLogoutView(views.LogoutView):
     next_page = 'login'
 
     def get(self, request, *args, **kwargs):
-        messages.info(request, 'Вы разлогинены')
+        messages.info(request, _('You are logged out'))
         return self.post(request, *args, **kwargs)

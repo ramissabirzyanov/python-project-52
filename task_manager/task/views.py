@@ -8,12 +8,12 @@ from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django_filters.views import FilterView
-
+from django.utils.translation import gettext as _
 
 class TasksListView(LoginRequiredMixin, FilterView):
     filterset_class = TaskFilter
     template_name = 'task/tasks.html'
-    queryset = Task.objects.all()
+    queryset = Task.objects.all().order_by('id')
 
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -21,7 +21,7 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = TaskCreateForm
     template_name = 'task/task_create.html'
     success_url = reverse_lazy('tasks')
-    success_message = 'Задача успешно создана'
+    success_message = _('The task has been successfully created')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -39,14 +39,14 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'task/task_update.html'
     success_url = reverse_lazy('tasks')
     login_url = 'login'
-    success_message = 'Задача успешно изменена'
+    success_message = _('The task has been successfully updated')
 
 
 class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Task
     template_name = 'task/task_delete.html'
     success_url = reverse_lazy('tasks')
-    success_message = 'Задача успешно удалена'
+    success_message = _('The task has been successfully deleted')
 
     def dispatch(self, request, *args, **kwargs):
         task = self.get_object()
@@ -54,5 +54,5 @@ class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
             return super().dispatch(request, *args, **kwargs)
         else:
             messages.error(
-                request, "Задачу может удалить только ее автор")
+                request, _('Only the author of the task can delete it'))
             return redirect('tasks')
