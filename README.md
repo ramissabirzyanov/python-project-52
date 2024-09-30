@@ -6,6 +6,7 @@ This is a task management system app. It allows you to set tasks, assign executo
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/ramissabirzyanov/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ramissabirzyanov/python-project-52/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/67f8b491ea82aeed0b47/maintainability)](https://codeclimate.com/github/ramissabirzyanov/python-project-52/maintainability)
 
 
 #### Installation
