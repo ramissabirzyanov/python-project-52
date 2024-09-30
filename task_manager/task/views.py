@@ -10,6 +10,7 @@ from django.contrib import messages
 from django_filters.views import FilterView
 from django.utils.translation import gettext as _
 
+
 class TasksListView(LoginRequiredMixin, FilterView):
     filterset_class = TaskFilter
     template_name = 'task/tasks.html'

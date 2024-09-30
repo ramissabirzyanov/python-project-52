@@ -6,7 +6,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Task(models.Model):
-    name = models.CharField(max_length=200, unique=True, verbose_name=_('Name'))
+    name = models.CharField(max_length=200,
+                            unique=True,
+                            verbose_name=_('Name'))
     description = models.TextField(blank=True, verbose_name=_('Discription'))
     status = models.ForeignKey(
         Status,
@@ -40,4 +42,4 @@ class Task(models.Model):
         return ",".join([str(label) for label in self.labels.all()])
 
     def __str__(self):
-        return f"Task {self.name}.Author is {self.author}. Status is {self.status}"
+        return {self.name}

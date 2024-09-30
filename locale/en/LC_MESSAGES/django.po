@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-27 10:15+0000\n"
+"POT-Creation-Date: 2024-09-30 08:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: task_manager/label/models.py:6
+#: task_manager/label/models.py:8
 #: task_manager/label/templates/label/labels.html:21
-#: task_manager/status/models.py:5
+#: task_manager/status/models.py:8
 #: task_manager/status/templates/status/statuses.html:21
-#: task_manager/task/models.py:9 task_manager/task/templates/task/tasks.html:33
+#: task_manager/task/models.py:11
+#: task_manager/task/templates/task/tasks.html:33
 msgid "Name"
 msgstr "Имя"
 
-#: task_manager/label/models.py:11
+#: task_manager/label/models.py:13
 msgid "Label"
 msgstr "Метка"
 
@@ -70,7 +71,7 @@ msgid "Update"
 msgstr "Изменить"
 
 #: task_manager/label/templates/label/labels.html:10
-#: task_manager/task/models.py:27
+#: task_manager/task/models.py:29
 #: task_manager/task/templates/task/task_detail.html:22
 #: task_manager/templates/base.html:29
 msgid "Labels"
@@ -105,10 +106,10 @@ msgid "The label has been successfully deleted"
 msgstr "Метка успешно удалена"
 
 #: task_manager/label/views.py:47
-msgid "It is not possible to delete the label because it is in use"
+msgid "It's not possible to delete the label because it's in use"
 msgstr "Невозможно удалить метку, потому что она используется"
 
-#: task_manager/status/models.py:10 task_manager/task/models.py:15
+#: task_manager/status/models.py:13 task_manager/task/models.py:17
 #: task_manager/task/templates/task/task_detail.html:20
 #: task_manager/task/templates/task/tasks.html:34
 msgid "Status"
@@ -151,26 +152,26 @@ msgid "The status has been successfully deleted"
 msgstr "Статус успешно удален"
 
 #: task_manager/status/views.py:47
-msgid "It is not possible to delete the status because it is in use"
+msgid "It's not possible to delete the status because it's in use"
 msgstr "Невозможно удалить статус, потому что он используется"
 
-#: task_manager/task/models.py:10
+#: task_manager/task/models.py:12
 msgid "Discription"
 msgstr "Описание"
 
-#: task_manager/task/models.py:22
+#: task_manager/task/models.py:24
 #: task_manager/task/templates/task/task_detail.html:19
 #: task_manager/task/templates/task/tasks.html:36
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/task/models.py:33
+#: task_manager/task/models.py:35
 #: task_manager/task/templates/task/task_detail.html:18
 #: task_manager/task/templates/task/tasks.html:35
 msgid "Author"
 msgstr "Автор"
 
-#: task_manager/task/models.py:37
+#: task_manager/task/models.py:39
 msgid "Task"
 msgstr "Задача"
 
@@ -187,6 +188,12 @@ msgstr "Удаление задачи"
 msgid "Task's detail"
 msgstr "Просмотр задачи"
 
+#: task_manager/task/templates/task/task_update.html:12
+#, fuzzy
+#| msgid "Updating a status"
+msgid "Updating a task"
+msgstr "Изменение статуса"
+
 #: task_manager/task/templates/task/tasks.html:10
 #: task_manager/templates/base.html:32
 msgid "Tasks"
@@ -196,19 +203,19 @@ msgstr "Задачи"
 msgid "Show"
 msgstr "Показать"
 
-#: task_manager/task/views.py:24
+#: task_manager/task/views.py:25
 msgid "The task has been successfully created"
 msgstr "Задача успешно создана"
 
-#: task_manager/task/views.py:42
+#: task_manager/task/views.py:43
 msgid "The task has been successfully updated"
 msgstr "Задача успешно изменена"
 
-#: task_manager/task/views.py:49
+#: task_manager/task/views.py:50
 msgid "The task has been successfully deleted"
 msgstr "Задача успешно удалена"
 
-#: task_manager/task/views.py:57
+#: task_manager/task/views.py:58
 msgid "Only the author of the task can delete it"
 msgstr "Задачу может удалить только ее автор"
 
@@ -283,14 +290,14 @@ msgid "The user has been successfully deleted"
 msgstr "Пользователь успешно удален"
 
 #: task_manager/user/views.py:46
-msgid "It is not possible to delete the user because it is in use"
+msgid "It's not possible to delete the user because it's in use"
 msgstr "Невозможно удалить пользователя, потому что он используется"
 
-#: task_manager/utils.py:25
+#: task_manager/utils.py:11
 msgid "You are not logged in! Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: task_manager/utils.py:40
+#: task_manager/utils.py:26
 msgid "You don't have the rights to update another user"
 msgstr "У вас нет прав для изменения другого пользователя"
 
