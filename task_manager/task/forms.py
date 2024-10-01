@@ -1,15 +1,15 @@
 from task_manager.task.models import Task
-from django import forms
+from task_manager.utils import CommonInfoForm
 
 
-class TaskCreateForm(forms.ModelForm):
+class TaskCreateForm(CommonInfoForm):
 
     class Meta:
         model = Task
         fields = ['name', 'description', 'status', 'executor', 'labels']
 
 
-class TaskUpdateForm(TaskCreateForm):
+class TaskUpdateForm(CommonInfoForm):
 
     class Meta:
         model = Task

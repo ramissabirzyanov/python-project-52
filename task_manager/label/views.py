@@ -44,7 +44,7 @@ class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         if Task.objects.filter(labels=label):
             messages.error(
                 request,
-                _("It's not possible to delete the label because it's in use"))
+                _("It's impossible to delete the label because it's in use"))
             return redirect('labels')
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)

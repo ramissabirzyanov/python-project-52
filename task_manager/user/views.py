@@ -43,7 +43,7 @@ class UserDeleteView(CurrentUserCheckMixin, SuccessMessageMixin, DeleteView):
         if Task.objects.filter(Q(author_id=user.id) | Q(executor_id=user.id)):
             messages.error(
                 request,
-                _("It's not possible to delete the user because it's in use"))
+                _("It's impossible to delete the user because it's in use"))
             return redirect('users')
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)

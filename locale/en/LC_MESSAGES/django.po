@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-30 08:46+0000\n"
+"POT-Creation-Date: 2024-10-01 11:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,7 +106,7 @@ msgid "The label has been successfully deleted"
 msgstr "Метка успешно удалена"
 
 #: task_manager/label/views.py:47
-msgid "It's not possible to delete the label because it's in use"
+msgid "It's impossible to delete the label because it's in use"
 msgstr "Невозможно удалить метку, потому что она используется"
 
 #: task_manager/status/models.py:13 task_manager/task/models.py:17
@@ -152,7 +152,7 @@ msgid "The status has been successfully deleted"
 msgstr "Статус успешно удален"
 
 #: task_manager/status/views.py:47
-msgid "It's not possible to delete the status because it's in use"
+msgid "It's impossible to delete the status because it's in use"
 msgstr "Невозможно удалить статус, потому что он используется"
 
 #: task_manager/task/models.py:12
@@ -189,8 +189,6 @@ msgid "Task's detail"
 msgstr "Просмотр задачи"
 
 #: task_manager/task/templates/task/task_update.html:12
-#, fuzzy
-#| msgid "Updating a status"
 msgid "Updating a task"
 msgstr "Изменение статуса"
 
@@ -290,14 +288,18 @@ msgid "The user has been successfully deleted"
 msgstr "Пользователь успешно удален"
 
 #: task_manager/user/views.py:46
-msgid "It's not possible to delete the user because it's in use"
+msgid "It's impossible to delete the user because it's in use"
 msgstr "Невозможно удалить пользователя, потому что он используется"
 
-#: task_manager/utils.py:11
+#: task_manager/utils.py:14
+msgid " with this name already exists"
+msgstr " с таким именем уже существует"
+
+#: task_manager/utils.py:22
 msgid "You are not logged in! Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: task_manager/utils.py:26
+#: task_manager/utils.py:37
 msgid "You don't have the rights to update another user"
 msgstr "У вас нет прав для изменения другого пользователя"
 

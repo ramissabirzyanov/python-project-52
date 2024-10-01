@@ -1,15 +1,15 @@
 from task_manager.label.models import Label
-from django.forms import ModelForm
+from task_manager.utils import CommonInfoForm
 
 
-class LabelCreateForm(ModelForm):
+class LabelCreateForm(CommonInfoForm):
 
     class Meta:
         model = Label
         fields = ["name"]
 
 
-class LabelUpdateForm(LabelCreateForm):
+class LabelUpdateForm(CommonInfoForm):
 
     class Meta:
         model = Label

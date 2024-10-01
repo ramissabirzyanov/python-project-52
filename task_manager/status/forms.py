@@ -1,15 +1,15 @@
 from task_manager.status.models import Status
-from django.forms import ModelForm
+from task_manager.utils import CommonInfoForm
 
 
-class StatusCreateForm(ModelForm):
+class StatusCreateForm(CommonInfoForm):
 
     class Meta:
         model = Status
         fields = ["name"]
 
 
-class StatusUpdateForm(ModelForm):
+class StatusUpdateForm(CommonInfoForm):
 
     class Meta:
         model = Status
