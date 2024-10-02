@@ -35,7 +35,7 @@ class UserUpdateView(CurrentUserCheckMixin, SuccessMessageMixin, UpdateView):
 class UserDeleteView(CurrentUserCheckMixin, SuccessMessageMixin, DeleteView):
     model = User
     template_name = 'user/user_delete.html'
-    success_url = reverse_lazy('main_page')
+    success_url = reverse_lazy('users')
     success_message = _('The user has been successfully deleted')
 
     def post(self, request, *args, **kwargs):
