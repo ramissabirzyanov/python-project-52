@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 15:01+0000\n"
+"POT-Creation-Date: 2024-10-02 15:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,7 +131,6 @@ msgstr "Создать статус"
 
 #: task_manager/status/templates/status/status_create.html:18
 #: task_manager/task/templates/task/task_create.html:18
-#: task_manager/user/templates/user/user_create.html:18
 msgid "Create"
 msgstr "Создать"
 
@@ -279,6 +278,10 @@ msgstr "Фамилия"
 #: task_manager/user/forms.py:13
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
+
+#: task_manager/user/templates/user/user_create.html:18
+msgid "Create_user"
+msgstr "Зарегистрировать"
 
 #: task_manager/user/templates/user/user_delete.html:11
 msgid "Deleting a user"
