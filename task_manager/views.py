@@ -12,7 +12,6 @@ def index(request):
 
 class UserLoginView(SuccessMessageMixin, views.LoginView):
     template_name = "login.html"
-    authentication_form = UserLoginForm
     success_message = _('You are logged in')
 
 
