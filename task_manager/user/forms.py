@@ -4,13 +4,13 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UserCreateForm(UserCreationForm):
-    def __init__(self, request=None, *args, **kwargs):
-        super().__init__(request=None, *args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.fields['first_name'].label = _('First name')
         self.fields['last_name'].label = _('Last name')
         self.fields['username'].label = _('Username')
-        self.fields['password'].label = _('Password')
-        self.fields['password_confirmation'].label = _('Password confirmation')
+        self.fields['password1'].label = _('Password')
+        self.fields['password2'].label = _('Password confirmation')
 
     usable_password = None
 
