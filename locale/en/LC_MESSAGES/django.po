@@ -269,10 +269,8 @@ msgid "Log in"
 msgstr "Войти"
 
 #: task_manager/user/forms.py:9
-#, fuzzy
-#| msgid "Full name"
 msgid "First name"
-msgstr "Полное имя"
+msgstr "Имя"
 
 #: task_manager/user/forms.py:10
 msgid "Last name"
