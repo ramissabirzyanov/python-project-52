@@ -100,7 +100,7 @@ msgstr "Дата создания"
 #: task_manager/task/templates/task/tasks.html:53
 #: task_manager/user/templates/user/users.html:33
 msgid "Delete"
-msgstr "удалить"
+msgstr "Удалить"
 
 #: task_manager/label/views.py:24
 msgid "The label has been successfully created"
