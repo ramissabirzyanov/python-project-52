@@ -18,7 +18,7 @@ class UserCreateForm(UserCreationForm):
         model = get_user_model()
         fields = [
             'first_name', 'last_name', 'username', 'password1', 'password2'
-            ]
+        ]
 
 
 class UserUpdateForm(UserCreateForm):
@@ -27,7 +27,7 @@ class UserUpdateForm(UserCreateForm):
         model = get_user_model()
         fields = [
             'first_name', 'last_name', 'username', 'password1', 'password2'
-            ]
+        ]
 
     def clean_username(self):
         username = self.cleaned_data.get('username')

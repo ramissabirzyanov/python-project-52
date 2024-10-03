@@ -12,4 +12,4 @@ class TaskAdmin(admin.ModelAdmin):
         'executor',
         'get_labels',
         'created_at',
-        )
+    )

@@ -47,7 +47,7 @@ class Status_CRUD_test(TestCase):
     def test_post_status_create(self):
         form_data = {
             'name': 'готово',
-            }
+        }
         response = self.client.post(reverse('status_create'), form_data)
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Status.objects.filter(name='готово').exists())
@@ -62,7 +62,7 @@ class Status_CRUD_test(TestCase):
     def test_post_status_update(self):
         new_form_data = {
             'name': 'updated status',
-            }
+        }
         response = self.client.post(
             reverse('status_update', args=[self.status.id]), new_form_data)
         self.status.refresh_from_db()

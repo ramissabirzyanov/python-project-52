@@ -68,7 +68,7 @@ class Task_CRUD_test(TestCase):
             'name': 'Totoro',
             'description': 'must watch it!',
             'status': self.status2.id
-            }
+        }
         response = self.client.post(reverse('task_create'), form_data)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Task.objects.count(), task_count + 1)
@@ -90,7 +90,7 @@ class Task_CRUD_test(TestCase):
             'name': 'The matrix has you',
             'description': 'follow the white rabbit',
             'status': self.status2.id,
-            }
+        }
         response = self.client.post(
             reverse('task_update', args=[self.task.id]), new_form_data)
         self.task.refresh_from_db()

@@ -48,7 +48,7 @@ class Label_CRUD_test(TestCase):
         label_count = Label.objects.count()
         form_data = {
             'name': 'label2',
-            }
+        }
         response = self.client.post(reverse('label_create'), form_data)
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Label.objects.filter(name='label2').exists())
@@ -64,7 +64,7 @@ class Label_CRUD_test(TestCase):
     def test_post_label_update(self):
         new_form_data = {
             'name': 'label1 updated',
-            }
+        }
         response = self.client.post(
             reverse('label_update', args=[self.label.id]),
             new_form_data)

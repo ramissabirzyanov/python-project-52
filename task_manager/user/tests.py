@@ -34,7 +34,7 @@ class User_CRUD_test(TestCase):
             'username': 'legend',
             'password1': '123',
             'password2': '123',
-            }
+        }
         response = self.client.post(reverse('user_create'), form_data)
         self.assertEqual(response.status_code, 302)
         self.assertTrue(User.objects.filter(username='legend').exists())
@@ -52,7 +52,7 @@ class User_CRUD_test(TestCase):
             'username': 'gotem',
             'password1': '1234',
             'password2': '1234'
-            }
+        }
         response = self.client.post(
             reverse('user_update', args=[self.user.id]),
             new_form_data)

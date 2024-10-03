@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR/'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -102,7 +102,7 @@ DATABASES['default'] = dj_database_url.config(
         default=os.getenv('DATABASE_URL'),
         conn_max_age=600,
         conn_health_checks=True,
-)
+    )
 
 ROLLBAR = {
     'access_token': '6b3c117a70714efea02ebfe1ab75583b',
@@ -144,11 +144,11 @@ USE_TZ = True
 
 LANGUAGES = [
     ('en', 'English'),
-    ('ru', 'Russian'), 
+    ('ru', 'Russian'),
 ]
 
 LOCALE_PATHS = [
-    BASE_DIR/'locale'
+    BASE_DIR / 'locale'
 ]
 
 
