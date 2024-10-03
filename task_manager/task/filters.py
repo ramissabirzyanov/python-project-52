@@ -10,7 +10,8 @@ from django.utils.translation import gettext_lazy as _
 class TaskFilter(django_filters.FilterSet):
     status = django_filters.ModelChoiceFilter(queryset=Status.objects.all())
     executor = django_filters.ModelChoiceFilter(queryset=User.objects.all())
-    labels = django_filters.ModelChoiceFilter(queryset=Label.objects.all(),  label=_('Label'))
+    labels = django_filters.ModelChoiceFilter(queryset=Label.objects.all(),
+                                              label=_('Label'))
     user_tasks = django_filters.BooleanFilter(widget=forms.CheckboxInput,
                                               field_name='author',
                                               method='filter_user_tasks',
