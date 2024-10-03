@@ -22,11 +22,11 @@ class Task(models.Model):
         blank=True,
         on_delete=models.PROTECT,
         verbose_name=_('Executor'))
-    labels = models.ManyToManyField(
+    label = models.ManyToManyField(
         Label,
-        related_name='labels',
+        related_name='label',
         blank=True,
-        verbose_name=_('Labels'))
+        verbose_name=_('Label'))
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
         User,

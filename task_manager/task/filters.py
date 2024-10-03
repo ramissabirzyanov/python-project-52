@@ -9,7 +9,7 @@ from django import forms
 class TaskFilter(django_filters.FilterSet):
     status = django_filters.ModelChoiceFilter(queryset=Status.objects.all())
     executor = django_filters.ModelChoiceFilter(queryset=User.objects.all())
-    labels = django_filters.ModelChoiceFilter(queryset=Label.objects.all())
+    label = django_filters.ModelChoiceFilter(queryset=Label.objects.all())
     user_tasks = django_filters.BooleanFilter(widget=forms.CheckboxInput,
                                               field_name='author',
                                               method='filter_user_tasks',
@@ -23,4 +23,4 @@ class TaskFilter(django_filters.FilterSet):
 
     class Meta:
         model = Task
-        fields = ['status', 'executor', 'labels']
+        fields = ['status', 'executor', 'label']

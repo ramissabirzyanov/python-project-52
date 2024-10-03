@@ -6,11 +6,11 @@ class TaskCreateForm(CommonInfoForm):
 
     class Meta:
         model = Task
-        fields = ['name', 'description', 'status', 'executor', 'labels']
+        fields = ['name', 'description', 'status', 'executor', 'label']
 
 
 class TaskUpdateForm(CommonInfoForm):
 
     class Meta:
         model = Task
-        fields = ['name', 'description', 'status', 'executor', 'labels']
+        fields = ['name', 'description', 'status', 'executor', 'label']
