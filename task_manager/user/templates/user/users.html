@@ -6,10 +6,11 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-<div class="container row p-5">
-  <h1>{% translate 'Users' %}</h1>
-</div>
-<div class="col p-5">
+<div class="d-grid container gap-1">
+  <div class="ml-6 pl-6 mb-2">
+    <h1>{% translate 'Users' %}</h1>
+  </div>
+<div class="ml-6 mb-2">
 <table class="table table-striped">
     <thead>
       <tr>
@@ -36,5 +37,6 @@
       {% endfor %}
     </tbody>
   </table>
+</div>
 </div>
 {% endblock %}
