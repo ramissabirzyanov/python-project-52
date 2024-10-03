@@ -99,10 +99,10 @@ DATABASES = {
 }
 
 DATABASES['default'] = dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    default=os.getenv('DATABASE_URL'),
+    conn_max_age=600,
+    conn_health_checks=True,
+)
 
 ROLLBAR = {
     'access_token': '6b3c117a70714efea02ebfe1ab75583b',
