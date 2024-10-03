@@ -71,5 +71,5 @@ class User_CRUD_test(TestCase):
         response = self.client.delete(
             reverse('user_delete', args=[self.user.id]))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/')
+        self.assertRedirects(response, '/users/')
         self.assertFalse(User.objects.filter(username='gotem').exists())
