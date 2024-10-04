@@ -17,8 +17,6 @@ class UserLoginView(SuccessMessageMixin, views.LoginView):
 
 
 class UserLogoutView(views.LogoutView):
-    http_method_names = ["get", "post"]
-    next_page = '/'
 
     def dispatch(self, request, *args, **kwargs):
         messages.info(request, _('You are logged out'))

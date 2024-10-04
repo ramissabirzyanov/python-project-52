@@ -1,5 +1,5 @@
 from task_manager.task.models import Task
-from task_manager.utils import CommonInfoForm
+from task_manager.forms import CommonInfoForm
 
 
 class TaskCreateForm(CommonInfoForm):

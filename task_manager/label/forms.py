@@ -1,5 +1,5 @@
 from task_manager.label.models import Label
-from task_manager.utils import CommonInfoForm
+from task_manager.forms import CommonInfoForm
 
 
 class LabelCreateForm(CommonInfoForm):

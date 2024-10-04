@@ -1,5 +1,5 @@
 from task_manager.status.models import Status
-from task_manager.utils import CommonInfoForm
+from task_manager.forms import CommonInfoForm
 
 
 class StatusCreateForm(CommonInfoForm):
