@@ -9,6 +9,7 @@ class Label(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        ordering = ['id']
         db_table = 'Label'
         verbose_name = _('Label')
 

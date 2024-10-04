@@ -13,7 +13,6 @@ from django.utils.translation import gettext as _
 class StatusListView(CurrentUserCheckMixin, ListView):
     model = Status
     template_name = 'status/statuses.html'
-    queryset = Status.objects.all().order_by('id')
 
 
 class StatusCreateView(CurrentUserCheckMixin, SuccessMessageMixin, CreateView):
@@ -29,7 +28,6 @@ class StatusUpdateView(CurrentUserCheckMixin, SuccessMessageMixin, UpdateView):
     form_class = StatusUpdateForm
     template_name = 'status/status_update.html'
     success_url = reverse_lazy('statuses')
-    login_url = 'login'
     success_message = _('The status has been successfully updated')
 
 

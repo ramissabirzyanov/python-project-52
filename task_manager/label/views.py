@@ -13,7 +13,6 @@ from django.utils.translation import gettext as _
 class LabelListView(CurrentUserCheckMixin, ListView):
     model = Label
     template_name = 'label/labels.html'
-    queryset = Label.objects.all().order_by('id')
 
 
 class LabelCreateView(CurrentUserCheckMixin, SuccessMessageMixin, CreateView):
@@ -29,7 +28,6 @@ class LabelUpdateView(CurrentUserCheckMixin, SuccessMessageMixin, UpdateView):
     form_class = LabelUpdateForm
     template_name = 'label/label_update.html'
     success_url = reverse_lazy('labels')
-    login_url = 'login'
     success_message = _('The label has been successfully updated')
 
 

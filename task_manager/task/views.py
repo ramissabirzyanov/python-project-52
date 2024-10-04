@@ -26,7 +26,7 @@ class TaskCreateView(CurrentUserCheckMixin, SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super(TaskCreateView, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class TaskDetailView(CurrentUserCheckMixin, DetailView):
@@ -39,7 +39,6 @@ class TaskUpdateView(CurrentUserCheckMixin, SuccessMessageMixin, UpdateView):
     form_class = TaskUpdateForm
     template_name = 'task/task_update.html'
     success_url = reverse_lazy('tasks')
-    login_url = 'login'
     success_message = _('The task has been successfully updated')
 
 

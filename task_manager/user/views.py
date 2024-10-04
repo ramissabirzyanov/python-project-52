@@ -14,7 +14,6 @@ from django.utils.translation import gettext as _
 class UsersListView(ListView):
     model = User
     template_name = 'user/users.html'
-    queryset = User.objects.all().order_by('id')
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
