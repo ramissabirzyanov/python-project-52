@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-05 08:23+0000\n"
+"POT-Creation-Date: 2024-10-05 08:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -267,6 +267,14 @@ msgstr "Узнать больше"
 msgid "Log in"
 msgstr "Войти"
 
+#: task_manager/user/forms.py:10
+msgid "First name"
+msgstr "Имя"
+
+#: task_manager/user/forms.py:13
+msgid "Last name"
+msgstr "Фамилия"
+
 #: task_manager/user/templates/user/user_create.html:18
 msgid "Create_user"
 msgstr "Зарегистрировать"
@@ -319,17 +327,8 @@ msgstr "Вы залогинены"
 msgid "You are logged out"
 msgstr "Вы разлогинены"
 
-#~ msgid "username"
-#~ msgstr "Имя пользователя"
+msgid "username"
+msgstr "Имя пользователя"
 
-#~ msgid "Password"
-#~ msgstr "Пароль"
-
-#~ msgid "First name"
-#~ msgstr "Имя"
-
-#~ msgid "Last name"
-#~ msgstr "Фамилия"
-
-#~ msgid "Password confirmation"
-#~ msgstr "Подтверждение пароля"
+msgid "Password"
+msgstr "Пароль"
