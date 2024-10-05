@@ -1,17 +1,11 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
-from django.utils.translation import gettext_lazy as _
+from django import forms
 
 
 class UserCreateForm(UserCreationForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['first_name'].label = _('First name')
-        self.fields['last_name'].label = _('Last name')
-        self.fields['username'].label = _('Username')
-        self.fields['password1'].label = _('Password')
-        self.fields['password2'].label = _('Password confirmation')
-
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
     usable_password = None
 
     class Meta:
