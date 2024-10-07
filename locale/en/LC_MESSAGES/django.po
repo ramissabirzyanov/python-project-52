@@ -326,3 +326,12 @@ msgstr "Вы залогинены"
 #: task_manager/views.py:20
 msgid "You are logged out"
 msgstr "Вы разлогинены"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "username"
+msgstr "Имя пользователя"
+
+msgid "Password confirmation"
+msgstr "Подтверждение пароля"
