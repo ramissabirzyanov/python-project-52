@@ -42,4 +42,4 @@ class Task(models.Model):
         return ",".join([str(label) for label in self.labels.all()])
 
     def __str__(self):
-        return {self.name}
+        return self.name

@@ -1,13 +1,11 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from task_manager.user.models import User
-from task_manager.task.models import Task
 from .forms import UserCreateForm, UserUpdateForm
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from task_manager.utils import CurrentUserCheckMixin
-from django.db.models import Q
 from django.utils.translation import gettext as _
 
 
@@ -39,7 +37,9 @@ class UserDeleteView(CurrentUserCheckMixin, SuccessMessageMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         user = self.get_object()
-        if Task.objects.filter(Q(author_id=user.id) | Q(executor_id=user.id)):
+        if user.author.filter(author_id=user.id)\
+            or\
+                user.executor.filter(executor_id=user.id):
             messages.error(
                 request,
                 _("It's impossible to delete the user because it's in use"))
