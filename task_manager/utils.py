@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 class IsUserLoggedMixin(LoginRequiredMixin):
     permission_denied_message = _("You are not logged in! Please log in.")
+    login_url = 'login'
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
