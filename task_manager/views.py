@@ -1,12 +1,12 @@
-from django.shortcuts import render
 from django.contrib.auth import views
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.views.generic.base import TemplateView
 from django.utils.translation import gettext as _
 
 
-def index(request):
-    return render(request, 'index.html', context={})
+class IndexView(TemplateView):
+    template_name = "index.html"
 
 
 class UserLoginView(SuccessMessageMixin, views.LoginView):

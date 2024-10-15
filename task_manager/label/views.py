@@ -6,16 +6,16 @@ from .forms import LabelCreateForm, LabelUpdateForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from task_manager.utils import CurrentUserCheckMixin
+from task_manager.utils import IsUserLoggedMixin
 from django.utils.translation import gettext as _
 
 
-class LabelListView(CurrentUserCheckMixin, ListView):
+class LabelListView(IsUserLoggedMixin, ListView):
     model = Label
     template_name = 'label/labels.html'
 
 
-class LabelCreateView(CurrentUserCheckMixin, SuccessMessageMixin, CreateView):
+class LabelCreateView(IsUserLoggedMixin, SuccessMessageMixin, CreateView):
     model = Label
     form_class = LabelCreateForm
     template_name = 'label/label_create.html'
@@ -23,7 +23,7 @@ class LabelCreateView(CurrentUserCheckMixin, SuccessMessageMixin, CreateView):
     success_message = _('The label has been successfully created')
 
 
-class LabelUpdateView(CurrentUserCheckMixin, SuccessMessageMixin, UpdateView):
+class LabelUpdateView(IsUserLoggedMixin, SuccessMessageMixin, UpdateView):
     model = Label
     form_class = LabelUpdateForm
     template_name = 'label/label_update.html'
@@ -31,7 +31,7 @@ class LabelUpdateView(CurrentUserCheckMixin, SuccessMessageMixin, UpdateView):
     success_message = _('The label has been successfully updated')
 
 
-class LabelDeleteView(CurrentUserCheckMixin, SuccessMessageMixin, DeleteView):
+class LabelDeleteView(IsUserLoggedMixin, SuccessMessageMixin, DeleteView):
     model = Label
     template_name = 'label/label_delete.html'
     success_url = reverse_lazy('labels')

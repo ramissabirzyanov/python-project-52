@@ -6,16 +6,16 @@ from .forms import StatusCreateForm, StatusUpdateForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from task_manager.utils import CurrentUserCheckMixin
+from task_manager.utils import IsUserLoggedMixin
 from django.utils.translation import gettext as _
 
 
-class StatusListView(CurrentUserCheckMixin, ListView):
+class StatusListView(IsUserLoggedMixin, ListView):
     model = Status
     template_name = 'status/statuses.html'
 
 
-class StatusCreateView(CurrentUserCheckMixin, SuccessMessageMixin, CreateView):
+class StatusCreateView(IsUserLoggedMixin, SuccessMessageMixin, CreateView):
     model = Status
     form_class = StatusCreateForm
     template_name = 'status/status_create.html'
@@ -23,7 +23,7 @@ class StatusCreateView(CurrentUserCheckMixin, SuccessMessageMixin, CreateView):
     success_message = _('The status has been successfully created')
 
 
-class StatusUpdateView(CurrentUserCheckMixin, SuccessMessageMixin, UpdateView):
+class StatusUpdateView(IsUserLoggedMixin, SuccessMessageMixin, UpdateView):
     model = Status
     form_class = StatusUpdateForm
     template_name = 'status/status_update.html'
@@ -31,7 +31,7 @@ class StatusUpdateView(CurrentUserCheckMixin, SuccessMessageMixin, UpdateView):
     success_message = _('The status has been successfully updated')
 
 
-class StatusDeleteView(CurrentUserCheckMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(IsUserLoggedMixin, SuccessMessageMixin, DeleteView):
     model = Status
     template_name = 'status/status_delete.html'
     success_url = reverse_lazy('statuses')

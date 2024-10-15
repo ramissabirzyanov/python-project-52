@@ -5,7 +5,7 @@ from task_manager import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='main_page'),
+    path('', views.IndexView.as_view(), name='main_page'),
     path('users/', include('task_manager.user.urls'), name='users'),
     path('statuses/', include('task_manager.status.urls'), name='statuses'),
     path('tasks/', include('task_manager.task.urls'), name='tasks'),
