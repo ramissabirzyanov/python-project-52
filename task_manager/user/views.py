@@ -44,7 +44,7 @@ class UserDeleteView(IsUserLoggedMixin,
     def post(self, request, *args, **kwargs):
         user = self.get_object()
         if (user.author.filter(author_id=user.id)
-            or user.executor.filter(executor_id=user.id)):
+                or user.executor.filter(executor_id=user.id)):
             messages.error(
                 request,
                 _("It's impossible to delete the user because it's in use"))
