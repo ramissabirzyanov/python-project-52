@@ -6,7 +6,7 @@ from .forms import LabelCreateForm, LabelUpdateForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from task_manager.utils import IsUserLoggedMixin
+from task_manager.mixins import IsUserLoggedMixin
 from django.utils.translation import gettext as _
 
 

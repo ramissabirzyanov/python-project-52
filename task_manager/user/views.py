@@ -5,7 +5,7 @@ from .forms import UserCreateForm, UserUpdateForm
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from task_manager.utils import CurrentUserMixin, IsUserLoggedMixin
+from task_manager.mixins import CurrentUserMixin, IsUserLoggedMixin
 from django.utils.translation import gettext as _
 
 

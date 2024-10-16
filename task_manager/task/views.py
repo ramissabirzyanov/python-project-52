@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from task_manager.task.models import Task
 from task_manager.task.filters import TaskFilter
-from task_manager.utils import IsUserLoggedMixin, IsUserAuthorMixin
+from task_manager.mixins import IsUserLoggedMixin, IsUserAuthorMixin
 from .forms import TaskCreateForm, TaskUpdateForm
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
