@@ -43,3 +43,18 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
+
+# class TaskLabels(models.Model):
+#     task = models.ForeignKey(
+#         Task,on_delete=models.CASCADE,
+#         blank=True,
+#         related_name='task',
+#         verbose_name=_('Task'))
+#     labels = models.ForeignKey(
+#         Label, on_delete=models.PROTECT,
+#         blank=True,
+#         related_name='labels',
+#         verbose_name=_('Labels'))
+
+#     class Meta:
+#         db_table = 'TaskLabels'
