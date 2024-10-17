@@ -198,7 +198,7 @@ msgstr "Просмотр задачи"
 
 #: task_manager/task/templates/task/task_update.html:12
 msgid "Updating a task"
-msgstr "Изменение статуса"
+msgstr "Изменение задачи"
 
 #: task_manager/task/templates/task/tasks.html:11
 #: task_manager/templates/base.html:33

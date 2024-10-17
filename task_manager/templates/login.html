@@ -1,22 +1,10 @@
-{% extends "base.html" %}
+{% extends "base_form.html" %}
 
-
-
-{% block content %}
 {% load i18n %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-    <div class="p-5 mb-3">
-        <h1>{% translate 'Login' %}</h1>
 
-        <form action="{% url 'login' %}" method="post" class="form">
-            {% csrf_token %}
-
-            {% bootstrap_form form %}
-            {% translate 'Log in' as log_in %}
-            {% bootstrap_button button_type="submit" content=log_in button_class="btn btn-dark"%}
-        </form>
-    </div>
-{% endblock %}
+{% block h1 %}{% translate 'Login' %}{% endblock %}
+{% block button_value %}{% translate 'Log in' %}{% endblock %}

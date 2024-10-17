@@ -1,19 +1,11 @@
-{% extends "base.html" %}
+{% extends "base_form.html" %}
 
-{% block content%}
 {% load i18n %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-<div class="p-5 mb-3">
-    <h1>{% translate 'Deleting a label' %}</h1>
-    <p> {% translate 'Are you sure you want to delete' %} {{label.name}}?</p>
 
-    <form action="{% url 'label_delete' pk=label.id %}" method="post" class="form">
-        {% csrf_token %}
-        {% translate "Yes, delete" as yes_delete %}
-        {% bootstrap_button button_type="submit" content=yes_delete button_class="btn btn-dark"%}
-    </form>
-</div>
-{% endblock %}
+{% block h1 %}{% translate 'Deleting a label' %}{% endblock %}
+{% block p %} <p>{% translate 'Are you sure you want to delete' %} {{label.name}}?{% endblock %}</p>
+{% block button_value %}{% translate "Yes, delete" %}{% endblock %}

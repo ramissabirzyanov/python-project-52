@@ -1,22 +1,10 @@
-{% extends "base.html" %}
+{% extends "base_form.html" %}
 
-
-{% block content%}
 {% load i18n %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
 
-<div class="p-5 mb-3">
-    <h1>{% translate 'Create a status' %}</h1>
-
-    <form action="{% url 'status_create' %}" method="post" class="form">
-        {% csrf_token %}
-
-        {% bootstrap_form form %}
-        {% translate "Create" as create %}
-        {% bootstrap_button button_type="submit" content=create button_class="btn btn-dark"%}
-    </form>
-</div>
-{% endblock %}
+{% block h1 %}{% translate 'Create a status' %}{% endblock %}
+{% block button_value %}{% translate "Create" %}{% endblock %}

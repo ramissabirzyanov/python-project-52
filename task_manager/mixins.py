@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 class NoPermissionHandleMixin:
     permission_denied_message = ''
-    permission_denied_url = reverse_lazy('')
+    permission_denied_url = reverse_lazy('main_page')
 
     def handle_no_permission(self):
         messages.error(self.request, self.get_permission_denied_message())
